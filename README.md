@@ -63,3 +63,25 @@ Telegram群：[@appleunblocker](https://t.me/appleunblocker)
 USDT-TRC20: TV1su1RnQny27YEF9WG4DbC8AAz3udt6d4 \
 ETH-ERC20：0xea8fbe1559b1eb4b526c3bb69285203969b774c5 \
 其余赞助方式欢迎联系开发者
+# Go to the root directory of the website and execute the following commands:
+
+```
+wget https://getcomposer.org/installer -O composer.phar
+php composer.phar
+php composer.phar install
+```
+# Set the website's running directory to /public and configure the pseudo-static-page setting to:
+```
+location ~* (runtime|application)/{
+    return 403;
+}
+location / {
+    if (!-e $request_filename){
+        rewrite  ^(.*)$  /index.php?s=$1  last;   break;
+    }
+}
+```
+# Execute the following command in the website's root directory to create an administrator account:
+```
+php think register <username> <password>
+```
